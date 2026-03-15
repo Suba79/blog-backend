@@ -7,28 +7,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sensive Blog - Home</title>
     <link rel="icon" href="{% static 'img/favicon.png' %}" type="image/png">
-
-
     <link rel="stylesheet" href="{% static 'styles.min.css' %}">
   </head>
   <body>
-    <!-- Временный вывод популярных постов (шаг 7) -->
-    <div style="background-color: #e3f2fd; padding: 20px; margin: 20px; border: 3px solid #2196f3; border-radius: 10px;">
-        <h2 style="color: #0d47a1;">🔥 Самые популярные посты из базы данных:</h2>
-        {% for post in most_popular_posts %}
-            <p style="font-size: 18px; margin: 5px 0;">👉 {{ post.title }}</p>
-        {% endfor %}
-    </div>
-    <!-- Конец временного блока -->
-
-    <!-- Далее идёт шапка сайта (header) -->
+    <!--================Header Menu Area =================-->
     <header class="header_area">
-    ...
       <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container box_1620">
             <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand logo_h" href="index.html"><img src="{% static 'img/logo.png' %}" alt="">
+            <a class="navbar-brand logo_h" href="index.html"><img src="{% static 'img/logo.png' %}" alt=""></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
@@ -117,71 +105,26 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-8">
+              <!-- Цикл для популярных постов -->
+              {% for post in most_popular_posts %}
               <div class="single-recent-blog-post">
                 <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/blog1.png' %}" alt="">
+                  <img class="img-fluid" src="{% static 'img/blog/blog' %}{{ forloop.counter }}.png" alt="">
                   <ul class="thumb-info">
-                    <li><a href="#"><i class="ti-user"></i>Admin</a></li>
-                    <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
-                    <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li>
+                    <li><a href="#"><i class="ti-user"></i>{{ post.author }}</a></li>
+                    <li><a href="#"><i class="ti-notepad"></i>{{ post.published_at|slice:":10" }}</a></li>
+                    <li><a href="#"><i class="ti-themify-favicon"></i>{{ post.comments_amount }} Comments</a></li>
                   </ul>
                 </div>
                 <div class="details mt-20">
-                  <h3>Woman claims husband wants to name baby girl after his ex-lover sparking.</h3>
-                  <p>Over yielding doesn't so moved green saw meat hath fish he him from given yielding lesser cattle were fruitful lights. Given let have, lesser their made him above gathered dominion sixth. Creeping deep said can't called second. Air created seed heaven sixth created living</p>
+                  <h3><a href="#">{{ post.title }}</a></h3>
+                  <p>{{ post.text|truncatewords:30 }}</p>
                   <a class="button" href="#">Read More <i class="ti-arrow-right"></i></a>
                 </div>
               </div>
+              {% endfor %}
 
-              <div class="single-recent-blog-post">
-                <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/blog2.png' %}" alt="">
-                  <ul class="thumb-info">
-                    <li><a href="#"><i class="ti-user"></i>Admin</a></li>
-                    <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
-                    <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                  </ul>
-                </div>
-                <div class="details mt-20">
-                  <h3>Woman claims husband wants to name baby girl after his ex-lover sparking.</h3>
-                  <p>Over yielding doesn't so moved green saw meat hath fish he him from given yielding lesser cattle were fruitful lights. Given let have, lesser their made him above gathered dominion sixth. Creeping deep said can't called second. Air created seed heaven sixth created living</p>
-                  <a class="button" href="#">Read More <i class="ti-arrow-right"></i></a>
-                </div>
-              </div>
-
-              <div class="single-recent-blog-post">
-                <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/blog3.png' %}" alt="">
-                  <ul class="thumb-info">
-                    <li><a href="#"><i class="ti-user"></i>Admin</a></li>
-                    <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
-                    <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                  </ul>
-                </div>
-                <div class="details mt-20">
-                  <h3>Tourist deaths in Costa Rica jeopardize safe destination reputation all time. </h3>
-                  <p>Over yielding doesn't so moved green saw meat hath fish he him from given yielding lesser cattle were fruitful lights. Given let have, lesser their made him above gathered dominion sixth. Creeping deep said can't called second. Air created seed heaven sixth created living</p>
-                  <a class="button" href="#">Read More <i class="ti-arrow-right"></i></a>
-                </div>
-              </div>
-
-              <div class="single-recent-blog-post">
-                <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/blog4.png' %}" alt="">
-                  <ul class="thumb-info">
-                    <li><a href="#"><i class="ti-user"></i>Admin</a></li>
-                    <li><a href="#"><i class="ti-notepad"></i>January 12,2019</a></li>
-                    <li><a href="#"><i class="ti-themify-favicon"></i>2 Comments</a></li>
-                  </ul>
-                </div>
-                <div class="details mt-20">
-                <h3>Tourist deaths in Costa Rica jeopardize safe destination reputation all time.  </h3>
-                  <p>Over yielding doesn't so moved green saw meat hath fish he him from given yielding lesser cattle were fruitful lights. Given let have, lesser their made him above gathered dominion sixth. Creeping deep said can't called second. Air created seed heaven sixth created living</p>
-                  <a class="button" href="#">Read More <i class="ti-arrow-right"></i></a>
-                </div>
-              </div>
-              
-
+              <!-- Пагинация (оставляем как есть) -->
               <div class="row">
                 <div class="col-lg-12">
                   <nav class="blog-pagination justify-content-center d-flex">
@@ -221,7 +164,6 @@
                   </div>
                   <button class="bbtns d-block mt-20 w-100">Subcribe</button>
                 </div>
-
 
                 <div class="single-sidebar-widget post-category-widget">
                   <h4 class="single-sidebar-widget" style="height:200px;">Здесь будет реклама</h4>
@@ -311,4 +253,3 @@
     <script src="{% static 'scripts.js' %}"></script>
   </body>
 </html>
-
