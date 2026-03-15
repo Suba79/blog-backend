@@ -12,8 +12,18 @@
     <link rel="stylesheet" href="{% static 'styles.min.css' %}">
   </head>
   <body>
-    <!--================Header Menu Area =================-->
+    <!-- Временный вывод популярных постов (шаг 7) -->
+    <div style="background-color: #e3f2fd; padding: 20px; margin: 20px; border: 3px solid #2196f3; border-radius: 10px;">
+        <h2 style="color: #0d47a1;">🔥 Самые популярные посты из базы данных:</h2>
+        {% for post in most_popular_posts %}
+            <p style="font-size: 18px; margin: 5px 0;">👉 {{ post.title }}</p>
+        {% endfor %}
+    </div>
+    <!-- Конец временного блока -->
+
+    <!-- Далее идёт шапка сайта (header) -->
     <header class="header_area">
+    ...
       <div class="main_menu">
         <nav class="navbar navbar-expand-lg navbar-light">
           <div class="container box_1620">
