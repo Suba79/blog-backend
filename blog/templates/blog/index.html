@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="{% static 'styles.min.css' %}">
   </head>
   <body>
-    {% for post in most_popular_posts %}
-      {{ post.title }}<br>
-    {% endfor %}
     <!--================Header Menu Area =================-->
     <header class="header_area">
       <div class="main_menu">
@@ -43,7 +40,7 @@
       </div>
     </header>
     <!--================Header Menu Area =================-->
-    
+
     <main class="site-main">
       <!--================Hero Banner start =================-->  
       <section class="mb-30px">
@@ -67,7 +64,7 @@
             <div class="flex-fill" {% if not forloop.last %}style="margin-right: 30px;"{% endif %}>
               <div class="card blog__slide text-center">
                 <div class="blog__slide__img">
-                  <img class="card-img rounded-0" src="{{ post.image_url }}" alt="">
+                  <img class="card-img rounded-0" src="{{ post.image_url }}" alt="{{ post.title }}">
                 </div>
                 <div class="blog__slide__content">
                   <h3><a href="#">{{ post.title }}</a></h3>
