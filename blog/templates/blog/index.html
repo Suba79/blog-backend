@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="{% static 'styles.min.css' %}">
   </head>
   <body>
-          {% for post in fresh_posts %}
-        {{ post.title }}<br>
-      {% endfor %}
     <!--================Header Menu Area =================-->
     <header class="header_area">
       <div class="main_menu">
@@ -67,7 +64,11 @@
             <div class="flex-fill" {% if not forloop.last %}style="margin-right: 30px;"{% endif %}>
               <div class="card blog__slide text-center">
                 <div class="blog__slide__img">
+                  {% if post.image_url %}
                   <img class="card-img rounded-0" src="{{ post.image_url }}" alt="{{ post.title }}">
+                  {% else %}
+                  <img class="card-img rounded-0" src="{% static 'img/banner/blog.png' %}" alt="{{ post.title }}">
+                  {% endif %}
                 </div>
                 <div class="blog__slide__content">
                   <h3><a href="#">{{ post.title }}</a></h3>
@@ -86,14 +87,17 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-8">
-              <!-- Цикл для популярных постов -->
-              {% for post in most_popular_posts %}
+              {% for post in fresh_posts %}
               <div class="single-recent-blog-post">
                 <div class="thumb">
-                  <img class="img-fluid" src="{% static 'img/blog/blog' %}{{ forloop.counter }}.png" alt="">
+                  {% if post.image_url %}
+                  <img class="img-fluid" src="{{ post.image_url }}" alt="{{ post.title }}">
+                  {% else %}
+                  <img class="img-fluid" src="{% static 'img/banner/blog.png' %}" alt="{{ post.title }}">
+                  {% endif %}
                   <ul class="thumb-info">
                     <li><a href="#"><i class="ti-user"></i>{{ post.author }}</a></li>
-                    <li><a href="#"><i class="ti-notepad"></i>{{ post.published_at|slice:":10" }}</a></li>
+                    <li><a href="#"><i class="ti-notepad"></i>{{ post.published_at }}</a></li>
                     <li><a href="#"><i class="ti-themify-favicon"></i>{{ post.comments_amount }} Comments</a></li>
                   </ul>
                 </div>
@@ -224,7 +228,7 @@
           <p class="footer-text m-0">
             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
             Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+            <!-- Link back to Colorlib can't be removed. -->
           </p>
         </div>
       </div>
